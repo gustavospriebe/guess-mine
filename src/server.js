@@ -21,6 +21,12 @@ const server = app.listen(PORT, handleListening);
 
 const io = new Server(server);
 
+// broadcast communicate all the sockets except who made the connection
+// io.on("connection", (socket) => {
+//     setTimeout(() => socket.broadcast.emit("hello"), 5000);
+// });
+
+// the socket comunicate with the server
 io.on("connection", (socket) => {
-    socket.emit("hello");
+    socket.on("helloGuys", () => console.log("the client said hello"));
 });
